@@ -3,8 +3,8 @@ diary = {}
 def main():
 	choice = input("What would you like to do\nRead, Write or delete entries.\n").lower()
 	if choice == "read":
-		date = input("Which date would you like to read? ")
-		read(date)
+		ken = input("Which date would you like to read? ")
+		read(ken)
 	elif choice == "write":
 		ken = input("Date: ")
 		entry = input("What do we have for today: ")
@@ -23,8 +23,8 @@ def read(date):
 		for content in contents:
 			if content == "":
 				continue
-			ken, data = content.split(", ")
-			diary[ken] = data
+			ken, entry = content.split(", ")
+			diary[ken] = entry
 	print("----------------------------")
 	print(diary[date], "\n" + "---------------------------")
 
@@ -39,15 +39,13 @@ def delete(date):
 		for content in contents:
 			if content == "":
 				continue
-			ken, data = content.split(", ")
-			diary[ken] = data
+			ken, entry = content.split(", ")
+			diary[ken] = entry
 	diary.pop(date)
 	print("Has been delted.")
-	with open("diary.txt", "w") as ilaf:
+	with open("diary.txt", "w") as file:
 		for i in diary:
-			ilaf.write(i + ", " + diary[i] + "\n")
+			file.write(i + ", " + diary[i] + "\n")
 
 while True:
 	main()
-
-
